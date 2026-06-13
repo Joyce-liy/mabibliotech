@@ -1,0 +1,394 @@
+/* ============================================================
+   BIBLIOTHEQUE UNIVERSITAIRE — app.css
+   Dashboard: style inchangé | Tables/listes: style moderne
+   ============================================================ */
+
+/* ── Variables (identiques à l'original) ───────────────────── */
+:root {
+    --app-bg:      #f5f7fb;
+    --app-ink:     #182230;
+    --app-muted:   #667085;
+    --app-line:    #d9e1ec;
+    --app-primary: #2557a7;
+    --app-sidebar: #10243f;
+
+    /* Nouvelles variables pour les tables */
+    --app-primary-soft: #dbeafe;
+    --app-primary-dark: #1d4ed8;
+    --app-success:      #16a34a;
+    --app-success-soft: #dcfce7;
+    --app-warning:      #d97706;
+    --app-warning-soft: #fef3c7;
+    --app-danger:       #dc2626;
+    --app-danger-soft:  #fee2e2;
+    --radius-sm: 6px;
+    --radius:    10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.07);
+    --shadow:    0 4px 16px rgba(0,0,0,.08);
+    --transition: all .18s ease;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+body {
+    background: var(--app-bg);
+    color: var(--app-ink);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Topbar (INCHANGÉ) ──────────────────────────────────────── */
+.topbar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--app-line);
+}
+
+/* ── App Shell (INCHANGÉ) ───────────────────────────────────── */
+.app-shell {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    min-height: calc(100vh - 57px);
+}
+
+/* ── Sidebar (INCHANGÉ) ─────────────────────────────────────── */
+.sidebar {
+    background: var(--app-sidebar);
+    color: #ffffff;
+    padding: 1rem;
+}
+
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.78);
+    border-radius: 0.45rem;
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link:focus {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* ── Content (INCHANGÉ) ─────────────────────────────────────── */
+.content {
+    padding: 1.25rem;
+}
+
+/* ── Page Card (INCHANGÉ) ───────────────────────────────────── */
+.page-card {
+    background: #ffffff;
+    border: 1px solid var(--app-line);
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 20px rgba(16, 36, 63, 0.04);
+    overflow: hidden;
+}
+
+/* ── Stat Cards (INCHANGÉ) ──────────────────────────────────── */
+.stat-card {
+    border-left: 4px solid var(--app-primary);
+}
+
+/* ── Badges statut (INCHANGÉ) ───────────────────────────────── */
+.badge-status-en-cours {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-status-rendu {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.badge-status-en-retard {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NOUVELLES TABLES MODERNES (listes: ouvrages, membres,
+   emprunts, penalites)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Table toolbar (barre recherche + boutons) ──────────────── */
+.table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--app-line);
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: #ffffff;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    max-width: 360px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--app-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.5rem 0.85rem 0.5rem 2.2rem;
+    border: 1px solid var(--app-line);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    color: var(--app-ink);
+    background: var(--app-bg);
+    transition: var(--transition);
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: var(--app-primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+}
+
+.search-box input::placeholder { color: var(--app-muted); }
+
+/* ── Tables ─────────────────────────────────────────────────── */
+.table {
+    font-size: 0.875rem;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.table thead th {
+    background: #f8fafc;
+    color: var(--app-muted);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.85rem 1.25rem;
+    border-bottom: 2px solid var(--app-line);
+    white-space: nowrap;
+    border-top: none;
+}
+
+.table tbody td {
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--app-line);
+    color: var(--app-ink);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-hover tbody tr {
+    transition: background .12s ease;
+}
+
+.table-hover tbody tr:hover td {
+    background: #f5f8ff;
+}
+
+/* ── Badges modernes ────────────────────────────────────────── */
+.badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.3em 0.8em;
+    border-radius: 50px;
+    letter-spacing: 0.02em;
+}
+
+.text-bg-success {
+    background: var(--app-success-soft) !important;
+    color: var(--app-success) !important;
+}
+
+.text-bg-warning {
+    background: var(--app-warning-soft) !important;
+    color: var(--app-warning) !important;
+}
+
+.text-bg-danger {
+    background: var(--app-danger-soft) !important;
+    color: var(--app-danger) !important;
+}
+
+.text-bg-primary {
+    background: var(--app-primary-soft) !important;
+    color: var(--app-primary-dark) !important;
+}
+
+/* ── Pagination moderne ─────────────────────────────────────── */
+.pagination {
+    gap: 3px;
+    flex-wrap: wrap;
+}
+
+.page-link {
+    border: 1px solid var(--app-line);
+    border-radius: var(--radius-sm) !important;
+    color: var(--app-ink);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    transition: var(--transition);
+    background: #ffffff;
+    line-height: 1.5;
+}
+
+.page-link:hover {
+    background: var(--app-primary-soft);
+    border-color: var(--app-primary);
+    color: var(--app-primary);
+}
+
+.page-item.active .page-link {
+    background: var(--app-primary);
+    border-color: var(--app-primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,.3);
+}
+
+.page-item.disabled .page-link {
+    color: var(--app-muted);
+    background: var(--app-bg);
+}
+
+/* ── Boutons ────────────────────────────────────────────────── */
+.btn {
+    font-weight: 500;
+    font-size: 0.875rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-primary {
+    background: var(--app-primary);
+    border-color: var(--app-primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #1a3d7c;
+    border-color: #1a3d7c;
+    box-shadow: 0 4px 14px rgba(37,99,235,.3);
+    transform: translateY(-1px);
+    color: #fff;
+}
+.table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    border-top: 1px solid var(--app-line);
+    background: #ffffff;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.table-footer .table-info {
+    font-size: 0.82rem;
+    color: var(--app-muted);
+}
+.btn-outline-primary { color: var(--app-primary); border-color: var(--app-primary); }
+.btn-outline-primary:hover { background: var(--app-primary); color: #fff; }
+
+.btn-outline-secondary {
+    color: var(--app-muted);
+    border-color: var(--app-line);
+    background: #fff;
+}
+.btn-outline-secondary:hover {
+    background: var(--app-bg);
+    color: var(--app-ink);
+    border-color: #b0bec5;
+}
+
+.btn-outline-success { color: var(--app-success); border-color: #86efac; }
+.btn-outline-success:hover { background: var(--app-success-soft); color: var(--app-success); border-color: var(--app-success); }
+
+.btn-outline-warning { color: var(--app-warning); border-color: #fcd34d; }
+.btn-outline-warning:hover { background: var(--app-warning-soft); color: var(--app-warning); }
+
+.btn-outline-danger { color: var(--app-danger); border-color: #fca5a5; }
+.btn-outline-danger:hover { background: var(--app-danger-soft); color: var(--app-danger); }
+
+.btn-sm { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+
+/* ── Formulaires ────────────────────────────────────────────── */
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--app-ink);
+    margin-bottom: 0.4rem;
+}
+
+.form-control, .form-select {
+    border: 1px solid var(--app-line);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    padding: 0.55rem 0.85rem;
+    color: var(--app-ink);
+    background: #ffffff;
+    transition: var(--transition);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+    outline: none;
+}
+
+.form-control::placeholder { color: var(--app-muted); opacity: 0.7; }
+
+/* ── Alertes ────────────────────────────────────────────────── */
+.alert {
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid transparent;
+}
+
+
+.alert-danger  { background: var(--app-danger-soft);  color: var(--app-danger);  border-left-color: var(--app-danger); }
+.alert-success { background: var(--app-success-soft); color: var(--app-success); border-left-color: var(--app-success); }
+.alert-info    { background: var(--app-primary-soft); color: var(--app-primary); border-left-color: var(--app-primary); }
+.alert-warning { background: var(--app-warning-soft); color: var(--app-warning); border-left-color: var(--app-warning); }
+
+/* ── Login ──────────────────────────────────────────────────── */
+body.login-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+    }
+    .sidebar {
+        position: static;
+    }
+    .table-toolbar { flex-direction: column; align-items: stretch; }
+    .search-box { max-width: 100%; }
+}
